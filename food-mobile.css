@@ -7,6 +7,26 @@
 body {
     background-color: #fff189;
 }
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+#title{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+#subtitle{
+    margin-top: 5%;
+}
+#title h1{
+    font-size: 3em;
+}
 #loading{
     display: none;
     justify-content: center;
@@ -17,11 +37,12 @@ body {
     margin-right: 2%;
 }
 #form-container {
+    margin-top: 5%;
     display: grid;
     grid-template-rows: 2;
     grid-template-columns: 3;
     justify-content: center;
-    padding-top: 25%;
+    padding-top: 0%;
     padding-bottom: 3%;
 }
 

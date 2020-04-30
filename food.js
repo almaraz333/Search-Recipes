@@ -15,6 +15,7 @@ isOdd = (n) => {
 
 async function searchIngredients() {
     document.getElementById('recipe-grid').style.display = 'none';
+    document.getElementById('subtitle').style.display = 'none';
     document.getElementById('loading').style.display = 'flex';
     let list = document.getElementById('ingredients').value;
     list = list.split(',');
