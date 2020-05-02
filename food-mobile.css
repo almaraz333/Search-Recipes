@@ -24,6 +24,10 @@ body {
 #subtitle{
     margin-top: 5%;
 }
+#error{
+    display: none;
+    margin-top: 5%;
+}
 #title h1{
     font-size: 3em;
 }
@@ -102,9 +106,7 @@ box-shadow:  20px 20px 60px #d9cd74,
              -20px -20px 60px #ffff9e;
     justify-self: center;
 }
-/* .recipe-container:hover{
-    background-color: #96e26d;
-} */
+
 .recipe-container p{
     padding: 5%;
     font-size: 1em;
