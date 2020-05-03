@@ -171,7 +171,7 @@ async function searchRecipe() {
             recipe_div.appendChild(p);
             const test_resp = await fetch(' https://api.spoonacular.com/recipes/' + data.results[i - 1].id + '/information?includeNutrition=false&apiKey=8fbf4a5632344fb892b407647dfdf419');
             const test_data = await test_resp.json();
-            a.textContent = test_data.results.title;
+            a.textContent = test_data.title;
             img.setAttribute('src', test_data.image);
             a.setAttribute('href', test_data.sourceUrl);
             p.innerHTML = test_data.summary;
