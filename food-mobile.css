@@ -27,6 +27,7 @@ body {
 #error{
     display: none;
     margin-top: 1%;
+    text-align: center;
 }
 #title h1{
     font-size: 3em;
@@ -82,7 +83,7 @@ select {
     text-align: center;
 }
 #recipe-grid{
-    margin-top: 5%;
+    margin-top: 1%;
     display: none;
 }
 .recipe-container img{

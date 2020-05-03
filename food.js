@@ -66,14 +66,14 @@ async function searchIngredients() {
         let err = document.createElement('h2');
         err_message = document.createTextNode('Opps Something Went Wring :/ Possible Spelling Error?');
         err.appendChild(err_message);
-        document.getElementById('error').appendChild(err);
+        document.querySelector('#error div').appendChild(err);
         document.getElementById('error').style.display = 'flex';
     } else if (response.status == 402) {
         document.getElementById('loading').style.display = 'none';
         let err = document.createElement('h2');
         err_message = document.createTextNode('API Call Limit Reached, Please Try Again Later. Thank You!');
         err.appendChild(err_message);
-        document.getElementById('error').appendChild(err);
+        document.querySelector('#error div').appendChild(err);
         document.getElementById('error').style.display = 'flex';
     }
     for (let i = 1; i <= data.length; i++) {
@@ -104,14 +104,14 @@ async function searchRecipe() {
         let err = document.createElement('h2');
         err_message = document.createTextNode('Opps Something Went Wring :/ Possible Spelling Error?');
         err.appendChild(err_message);
-        document.getElementById('error').appendChild(err);
+        document.querySelector('#error div').appendChild(err);
         document.getElementById('error').style.display = 'flex';
     } else if (response.status == 402) {
         document.getElementById('loading').style.display = 'none';
         let err = document.createElement('h2');
         err_message = document.createTextNode('API Call Limit Reached, Please Try Again Later. Thank You!');
         err.appendChild(err_message);
-        document.getElementById('error').appendChild(err);
+        document.querySelector('#error div').appendChild(err);
         document.getElementById('error').style.display = 'flex';
     }
     for (let i = 1; i <= data.results.length; i++) {
