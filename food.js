@@ -48,20 +48,33 @@ createPage = (n, info) => {
 
 }
 errorCheck = (call_data, api_response) =>{
-    if (call_data.length === 0 || call_data.results.length === 0) {
-        document.getElementById('loading').style.display = 'none';
-        let err = document.getElementById('error-text');
-        err.innerHTML = '';
-        err_message = document.createTextNode('Opps Something Went Wring :/ Possible Spelling Error?');
-        err.appendChild(err_message);
-        document.getElementById('error').style.display = 'flex';
-    } else if (api_response.status == 402) {
-        document.getElementById('loading').style.display = 'none';
-        let err = document.getElementById('error-text');
-        err.innerHTML = '';
-        err_message = document.createTextNode('API Call Limit Reached, Please Try Again Later. Thank You!');
-        err.appendChild(err_message);
-        document.getElementById('error').style.display = 'flex';
+    try {
+        if (call_data.results.length === 0){
+            document.getElementById('loading').style.display = 'none';
+            let err = document.getElementById('error-text');
+            err.innerHTML = '';
+            err_message = document.createTextNode('Opps Something Went Wring :/ Possible Spelling Error?');
+            err.appendChild(err_message);
+            document.getElementById('error').style.display = 'flex';
+        }
+    }
+    catch (err){
+        if (call_data.length === 0 ) {
+            document.getElementById('loading').style.display = 'none';
+            let err = document.getElementById('error-text');
+            err.innerHTML = '';
+            err_message = document.createTextNode('Opps Something Went Wring :/ Possible Spelling Error?');
+            err.appendChild(err_message);
+            document.getElementById('error').style.display = 'flex';
+        } 
+        else if (api_response.status == 402) {
+            document.getElementById('loading').style.display = 'none';
+            let err = document.getElementById('error-text');
+            err.innerHTML = '';
+            err_message = document.createTextNode('API Call Limit Reached, Please Try Again Later. Thank You!');
+            err.appendChild(err_message);
+            document.getElementById('error').style.display = 'flex';
+        }
     }
 }
 loading = () =>{
@@ -80,6 +93,7 @@ async function searchIngredients() {
     if (document.getElementById('recipe-grid')) {
         document.getElementById('recipe-grid').innerHTML = '';
     }
+    console.log(data);
     errorCheck(data, response);
     for (let i = 1; i <= data.length; i++) {
         const test_resp = await fetch(' https://api.spoonacular.com/recipes/' + data[i - 1].id + '/information?includeNutrition=false&apiKey=8fbf4a5632344fb892b407647dfdf419');
