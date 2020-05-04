@@ -47,12 +47,31 @@ createPage = (n, info) => {
     }
 
 }
-
-async function searchIngredients() {
+errorCheck = (call_data, api_response) =>{
+    if (call_data.length === 0 || call_data.results.length === 0) {
+        document.getElementById('loading').style.display = 'none';
+        let err = document.getElementById('error-text');
+        err.innerHTML = '';
+        err_message = document.createTextNode('Opps Something Went Wring :/ Possible Spelling Error?');
+        err.appendChild(err_message);
+        document.getElementById('error').style.display = 'flex';
+    } else if (api_response.status == 402) {
+        document.getElementById('loading').style.display = 'none';
+        let err = document.getElementById('error-text');
+        err.innerHTML = '';
+        err_message = document.createTextNode('API Call Limit Reached, Please Try Again Later. Thank You!');
+        err.appendChild(err_message);
+        document.getElementById('error').style.display = 'flex';
+    }
+}
+loading = () =>{
     document.getElementById('error').style.display = 'none';
     document.getElementById('recipe-grid').style.display = 'none';
     document.getElementById('subtitle').style.display = 'none';
     document.getElementById('loading').style.display = 'flex';
+}
+async function searchIngredients() {
+    loading();
     let list = document.getElementById('ingredients').value;
     list = list.split(',');
     list = list.join(',+');
@@ -61,21 +80,7 @@ async function searchIngredients() {
     if (document.getElementById('recipe-grid')) {
         document.getElementById('recipe-grid').innerHTML = '';
     }
-    if (data.length === 0) {
-        document.getElementById('loading').style.display = 'none';
-        let err = document.createElement('h2');
-        err_message = document.createTextNode('Opps Something Went Wring :/ Possible Spelling Error?');
-        err.appendChild(err_message);
-        document.querySelector('#error div').appendChild(err);
-        document.getElementById('error').style.display = 'flex';
-    } else if (response.status == 402) {
-        document.getElementById('loading').style.display = 'none';
-        let err = document.createElement('h2');
-        err_message = document.createTextNode('API Call Limit Reached, Please Try Again Later. Thank You!');
-        err.appendChild(err_message);
-        document.querySelector('#error div').appendChild(err);
-        document.getElementById('error').style.display = 'flex';
-    }
+    errorCheck(data, response);
     for (let i = 1; i <= data.length; i++) {
         const test_resp = await fetch(' https://api.spoonacular.com/recipes/' + data[i - 1].id + '/information?includeNutrition=false&apiKey=8fbf4a5632344fb892b407647dfdf419');
         const test_data = await test_resp.json();
@@ -89,31 +94,14 @@ async function searchIngredients() {
 
 
 async function searchRecipe() {
-    document.getElementById('error').style.display = 'none';
-    document.getElementById('recipe-grid').style.display = 'none';
-    document.getElementById('subtitle').style.display = 'none';
-    document.getElementById('loading').style.display = 'flex';
+    loading();
     var food = document.getElementById('ingredients').value;
     const response = await fetch('https://api.spoonacular.com/recipes/search?query=' + food + '&apiKey=8fbf4a5632344fb892b407647dfdf419');
     const data = await response.json();
     if (document.getElementById('recipe-grid')) {
         document.getElementById('recipe-grid').innerHTML = '';
     }
-    if (data.length === 0) {
-        document.getElementById('loading').style.display = 'none';
-        let err = document.createElement('h2');
-        err_message = document.createTextNode('Opps Something Went Wring :/ Possible Spelling Error?');
-        err.appendChild(err_message);
-        document.querySelector('#error div').appendChild(err);
-        document.getElementById('error').style.display = 'flex';
-    } else if (response.status == 402) {
-        document.getElementById('loading').style.display = 'none';
-        let err = document.createElement('h2');
-        err_message = document.createTextNode('API Call Limit Reached, Please Try Again Later. Thank You!');
-        err.appendChild(err_message);
-        document.querySelector('#error div').appendChild(err);
-        document.getElementById('error').style.display = 'flex';
-    }
+    errorCheck(data, response);
     for (let i = 1; i <= data.results.length; i++) {
         const test_resp = await fetch(' https://api.spoonacular.com/recipes/' + data.results[i - 1].id + '/information?includeNutrition=false&apiKey=8fbf4a5632344fb892b407647dfdf419');
         const test_data = await test_resp.json();
