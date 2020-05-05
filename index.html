@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,50 +16,51 @@
 </head>
 
 <body>
-    <div class='container'>
-        <div class='row' id='title'>
-            <div class='col d-flex justify-content-center'>
+    <div class="container">
+        <div class="row" id="title">
+            <div class="col d-flex justify-content-center">
                 <h1>Search for Recipes by Ingredients or by Dish</h1>
             </div>
         </div>
-        <div class='row'>
-            <div class='col d-flex justify-content-center'>
-                <img src='./images/fork.png' alt='Fork and knife'>
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <img src="./images/fork.png" alt="Fork and knife">
             </div>
         </div>
         <div id="form-container">
-            <form>
-                <label class='visuallyhidden' for='ingredients'>Separate Ingredients by Comma (chicken, rice,
-                    carrots)</label>
-                <input type="text" id='ingredients' name='ingredients'
-                    placeholder="Separate Ingredients by Comma (chicken, rice, carrots)..."></input>
-            </form>
-            <label class='visuallyhidden' for='recipe_choice'>Choose by Ingredients or by Dish</label>
-            <select id="recipe_choice">
-                <option value="by_ingredient">By Ingredients</option>
-                <option value="by_dish">By Dish</option>
-            </select>
+            <div class='row d-flex justify-content-center'>
+                <form>
+                    <label class="visuallyhidden" for="ingredients">Separate Ingredients by Comma (rice, peas)</label>
+                    <input type="text" id="ingredients" name="ingredients"
+                        placeholder="Separate Ingredients by Comma (rice, peas)">
+                </form>
+                <label class="visuallyhidden" for="recipe_choice">Choose by Ingredients or by Dish</label>
+                <select id="recipe_choice">
+                    <option value="default_choice">Choose</option>
+                    <option value="by_ingredient">By Ingredients</option>
+                    <option value="by_dish">By Dish</option>
+                </select>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <button id="button" class="col-8" onclick="returnResult()">Search</button>
+            </div>
         </div>
-        <div class='row'>
-            <div class='col-5'></div>
-            <button id='button' class='col-2' onClick="returnResult()">Search</button>
-            <div class='col-5'></div>
-        </div>
-        <div class='row' id='subtitle'>
-            <div class='col d-flex justify-content-center'>
+
+        <div class="row" id="subtitle" style="display: none;">
+            <div class="col d-flex justify-content-center">
                 <h2>What Are you Hungry For?</h2>
             </div>
         </div>
-        <div id='loading'>
+        <div id="loading" style="display: none;">
             <div class="spinner-border"></div>
             <h1>Analyzing Taste Buds...</h1>
         </div>
-        <div class='row' id='error'>
-            <div class='col d-flex justify-content-center' >
-                <h2 id='error-text'></h2>
+        <div class="row" id="error" style="display: none;">
+            <div class="col d-flex justify-content-center">
+                <h2 id="error-text"></h2>
             </div>
         </div>
-        <div id='recipe-grid' class='container'></div>
+        <div id="recipe-grid" class="container" style="display: grid;"></div>
     </div>
 </body>
 

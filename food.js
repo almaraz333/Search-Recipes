@@ -47,9 +47,9 @@ createPage = (n, info) => {
     }
 
 }
-errorCheck = (call_data, api_response) =>{
+errorCheck = (call_data, api_response) => {
     try {
-        if (call_data.results.length === 0){
+        if (call_data.results.length === 0) {
             document.getElementById('loading').style.display = 'none';
             let err = document.getElementById('error-text');
             err.innerHTML = '';
@@ -57,17 +57,15 @@ errorCheck = (call_data, api_response) =>{
             err.appendChild(err_message);
             document.getElementById('error').style.display = 'flex';
         }
-    }
-    catch (err){
-        if (call_data.length === 0 ) {
+    } catch (err) {
+        if (call_data.length === 0) {
             document.getElementById('loading').style.display = 'none';
             let err = document.getElementById('error-text');
             err.innerHTML = '';
             err_message = document.createTextNode('Opps Something Went Wring :/ Possible Spelling Error?');
             err.appendChild(err_message);
             document.getElementById('error').style.display = 'flex';
-        } 
-        else if (api_response.status == 402) {
+        } else if (api_response.status == 402) {
             document.getElementById('loading').style.display = 'none';
             let err = document.getElementById('error-text');
             err.innerHTML = '';
@@ -77,11 +75,18 @@ errorCheck = (call_data, api_response) =>{
         }
     }
 }
-loading = () =>{
+loading = () => {
     document.getElementById('error').style.display = 'none';
     document.getElementById('recipe-grid').style.display = 'none';
     document.getElementById('subtitle').style.display = 'none';
     document.getElementById('loading').style.display = 'flex';
+}
+noChoice = () => {
+    let err = document.getElementById('error-text');
+    err.innerHTML = '';
+    err_message = document.createTextNode('Please Select a Choice');
+    err.appendChild(err_message);
+    document.getElementById('error').style.display = 'flex';
 }
 async function searchIngredients() {
     loading();
@@ -135,6 +140,9 @@ function returnResult() {
             break;
         case 'By Dish':
             searchRecipe();
+            break;
+        case 'Choose':
+            noChoice();
             break;
     }
 }
