@@ -82,6 +82,7 @@ loading = () => {
     document.getElementById('loading').style.display = 'flex';
 }
 noChoice = () => {
+    document.getElementById('subtitle').style.display = 'none';
     let err = document.getElementById('error-text');
     err.innerHTML = '';
     err_message = document.createTextNode('Please Select a Choice');
